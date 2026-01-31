@@ -73,17 +73,17 @@ You can run all tests at once or run the suites individually.
 
 - **Run all tests:**
   ```bash
-  pytest
+  python -m pytest
   ```
 
 - **Run only API tests:**
   ```bash
-  pytest api-tests/
+  python -m pytest api-tests/
   ```
 
 - **Run only Web UI tests:**
   ```bash
-  pytest web-ui/
+  python -m pytest web-ui/
   ```
 
 ### Web UI Test Configuration
@@ -93,7 +93,7 @@ You can control the Web UI tests using environment variables:
 
 **Example:**
 ```bash
-HEADLESS=true pytest web-ui/
+HEADLESS=true python -m pytest web-ui/
 ```
 
 ---
@@ -107,12 +107,12 @@ To generate a report in the `reports/` directory, run `pytest` with the `--html`
 
 - **Generate API test report:**
   ```bash
-  pytest api-tests/ --html=reports/api-test-report.html --self-contained-html
+  python -m pytest api-tests/ --html=reports/api-test-report.html --self-contained-html
   ```
 
 - **Generate Web UI test report:**
   ```bash
-  pytest web-ui/ --html=reports/web-ui-test-report.html --self-contained-html
+  python -m pytest web-ui/ --html=reports/web-ui-test-report.html --self-contained-html
   ```
 
 After running, you can open the generated `.html` file from the `reports/` directory in your browser to view the results.

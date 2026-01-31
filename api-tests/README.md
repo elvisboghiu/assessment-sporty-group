@@ -30,7 +30,7 @@ pip install -r requirements.txt
 
 ## Run
 ```bash
-pytest
+python -m pytest
 ```
 
 ## Test Cases

@@ -45,7 +45,7 @@ pip install -r ../requirements.txt
 
 ## Run
 ```bash
-pytest
+python -m pytest
 ```
 
 ## Configuration
@@ -55,7 +55,7 @@ pytest
 
 Example:
 ```bash
-HEADLESS=true MOBILE_DEVICE_NAME="Pixel 7" pytest
+HEADLESS=true MOBILE_DEVICE_NAME="Pixel 7" python -m pytest
 ```
 
 ## Output
