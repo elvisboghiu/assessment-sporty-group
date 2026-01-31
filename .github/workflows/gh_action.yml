@@ -1,0 +1,69 @@
+name: Run Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10"]
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Set up Google Chrome
+      uses: browser-actions/setup-chrome@v1
+      # This action exports a CHROMEDRIVER_PATH environment variable that the test setup will use.
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest-html
+        # Install requirements for both API and Web UI tests
+        if [ -f api-tests/requirements.txt ]; then pip install -r api-tests/requirements.txt; fi
+        if [ -f web-ui/requirements.txt ]; then pip install -r web-ui/requirements.txt; fi
+
+    - name: Run API Tests
+      run: pytest api-tests/ --html=reports/api-test-report.html --self-contained-html
+      # Continue to the next step even if this one fails
+      continue-on-error: true
+
+    - name: Run Web UI Tests
+      run: pytest web-ui/ --html=reports/web-ui-test-report.html --self-contained-html
+      env:
+        # The setup-chrome action exports the path to the chromedriver.
+        # The conftest.py file is already set up to use this env var.
+        CHROMEDRIVER_PATH: ${{ env.CHROMEDRIVER_PATH }}
+        # Run the browser in headless mode for the CI environment.
+        HEADLESS: "true"
+      # Continue to the next step even if this one fails
+      continue-on-error: true
+
+    - name: Upload Test Reports
+      # This step will always run
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-reports-${{ matrix.python-version }}
+        path: reports/
+
+    - name: Upload screenshots on failure
+      # This step will only run if the Web UI tests step fails
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: screenshots-${{ matrix.python-version }}
+        path: web-ui/screenshots/
