@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-from utils.waits import wait_for_any
+from web_ui.utils.waits import wait_for_any
 
 
 class BasePage:

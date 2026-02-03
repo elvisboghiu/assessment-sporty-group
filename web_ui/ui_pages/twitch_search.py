@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 
-from ui_pages.base_page import BasePage
+from .base_page import BasePage
 
 
 class TwitchSearchPage(BasePage):

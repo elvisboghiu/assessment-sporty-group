@@ -34,7 +34,7 @@ jobs:
         pip install pytest-html
         # Install requirements for both API and Web UI tests
         if [ -f api-tests/requirements.txt ]; then pip install -r api-tests/requirements.txt; fi
-        if [ -f web-ui/requirements.txt ]; then pip install -r web-ui/requirements.txt; fi
+        if [ -f web_ui/requirements.txt ]; then pip install -r web_ui/requirements.txt; fi
 
     - name: Run API Tests
       run: pytest api-tests/ --html=reports/api-test-report.html --self-contained-html
@@ -42,7 +42,7 @@ jobs:
       continue-on-error: true
 
     - name: Run Web UI Tests
-      run: pytest web-ui/ --html=reports/web-ui-test-report.html --self-contained-html
+      run: pytest web_ui/ --html=reports/web-ui-test-report.html --self-contained-html
       env:
         # The setup-chrome action exports the path to the chromedriver.
         # The conftest.py file is already set up to use this env var.
@@ -66,4 +66,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: screenshots-${{ matrix.python-version }}
-        path: web-ui/screenshots/
+        path: web_ui/screenshots/

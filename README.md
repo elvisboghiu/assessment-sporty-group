@@ -17,7 +17,7 @@ https://jsonplaceholder.typicode.com/
 - Validates response status codes, headers, and JSON body content.
 - Clear and maintainable test structure.
 
-## 2. Web UI Tests (`web-ui/`)
+## 2. Web UI Tests (`web_ui/`)
 
 This suite uses `pytest` and `Selenium` to automate the Twitch mobile web flow in Chrome emulation. The primary test flow is:
 
@@ -62,7 +62,7 @@ This suite uses `pytest` and `Selenium` to automate the Twitch mobile web flow i
 3.  **Install all dependencies:**
     This single command installs requirements for both API and Web UI tests.
     ```bash
-    pip install -r api-tests/requirements.txt -r web-ui/requirements.txt
+    pip install -r api-tests/requirements.txt -r web_ui/requirements.txt
     ```
 
 ---
@@ -83,7 +83,7 @@ You can run all tests at once or run the suites individually.
 
 - **Run only Web UI tests:**
   ```bash
-  pytest web-ui/
+  pytest web_ui/
   ```
 
 ### Web UI Test Configuration
@@ -93,7 +93,7 @@ You can control the Web UI tests using environment variables:
 
 **Example:**
 ```bash
-HEADLESS=true pytest web-ui/
+HEADLESS=true pytest web_ui/
 ```
 
 ---
@@ -112,7 +112,7 @@ To generate a report in the `reports/` directory, run `pytest` with the `--html`
 
 - **Generate Web UI test report:**
   ```bash
-  pytest web-ui/ --html=reports/web-ui-test-report.html --self-contained-html
+  pytest web_ui/ --html=reports/web-ui-test-report.html --self-contained-html
   ```
 
 After running, you can open the generated `.html` file from the `reports/` directory in your browser to view the results.

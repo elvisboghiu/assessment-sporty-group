@@ -13,8 +13,8 @@ Handles optional modal/pop-up before the video loads.
 
 ## Repository Structure
 ```
-web-ui/
-├── pages/                 # Page Object Model classes
+web_ui/
+├── ui_pages/              # Page Object Model classes
 │   ├── base_page.py      # Base class with common methods
 │   ├── twitch_home.py    # Twitch home page interactions
 │   ├── twitch_search.py  # Search page interactions

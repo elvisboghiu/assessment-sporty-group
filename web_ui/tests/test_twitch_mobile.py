@@ -1,11 +1,11 @@
 import pytest
 
-from ui_pages.twitch_home import TwitchHomePage
-from ui_pages.twitch_results import TwitchResultsPage
-from ui_pages.twitch_search import TwitchSearchPage
-from ui_pages.twitch_streamer import TwitchStreamerPage
-from utils.scroll import scroll_down
-from utils.screenshot import save_screenshot
+from web_ui.ui_pages.twitch_home import TwitchHomePage
+from web_ui.ui_pages.twitch_results import TwitchResultsPage
+from web_ui.ui_pages.twitch_search import TwitchSearchPage
+from web_ui.ui_pages.twitch_streamer import TwitchStreamerPage
+from web_ui.utils.scroll import scroll_down
+from web_ui.utils.screenshot import save_screenshot
 
 
 @pytest.mark.parametrize(
